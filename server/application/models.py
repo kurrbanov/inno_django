@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Laptop(models.Model):
@@ -28,3 +29,8 @@ class Laptop(models.Model):
     display = models.DecimalField(max_digits=3, decimal_places=1)
     ram = models.IntegerField()
     processor = models.CharField(max_length=10, choices=PROCESSOR)
+
+
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    laptop = models.ManyToManyField(Laptop, null=True)
