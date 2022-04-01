@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+from application.views import main_page, list_laptops
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', main_page, name=""),
+    path('laptops/', list_laptops, name='laptops')
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

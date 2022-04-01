@@ -1,0 +1,27 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-xxl">
+        <div class="row row-cols-3">
+            {% for laptop, url in laptops %}
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ url }}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ laptop.name }}</h5>
+                            <ul>
+                                <li>{{ laptop.brand }}</li>
+                                <li>{{ laptop.ram }}</li>
+                                <li>{{ laptop.processor }}</li>
+                                <li>{{ laptop.display }}</li>
+                            </ul>
+                            <h5>{{ laptop.price }}</h5>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
