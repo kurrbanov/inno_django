@@ -1,0 +1,49 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        main {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        form {
+            max-width: 400px;
+        }
+
+        form {
+            padding-top: 10px;
+        }
+
+
+    </style>
+    <main class="signin text-center">
+        <form method="POST" class="signin">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">Войти</h1>
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Логин">
+                <label for="username">Логин</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Пароль">
+                <label for="password">Пароль</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" type="submit">Войти</button>
+            <a class="w-100 btn btn-lg btn-primary" type="button" href="{% url 'registration' %}">Зарегистрироваться</a>
+        </form>
+    </main>
+{% endblock content %}

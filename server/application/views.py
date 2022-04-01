@@ -1,11 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 from application.models import Laptop, Cart
 from application.form import RegistrationUser
 
 
 def registration(request):
+    if request.user.is_authenticated:
+        return redirect('')
+
     form = RegistrationUser()
 
     if request.method == "POST":
@@ -15,6 +19,7 @@ def registration(request):
             new_cart = Cart(user=new_user)
             new_user.save()
             new_cart.save()
+            return redirect('')
         else:
             messages.error(request, "Форма регистрации заполнена неверно!")
             return render(request, "registration.html")
@@ -22,8 +27,27 @@ def registration(request):
     return render(request, "registration.html", {"form": form})
 
 
-def login(request):
-    pass
+def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('')
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("")
+        else:
+            messages.error(request, "Неверный логин или пароль!")
+
+    return render(request, "login.html")
+
+
+def logout_page(request):
+    logout(request)
+    return redirect('')
 
 
 def main_page(request):

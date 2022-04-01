@@ -47,10 +47,12 @@
             </ul>
             <form method="POST" class="d-flex" action="{% url 'search' %}">
                 {% csrf_token %}
-                <input class="form-control me-2" type="search" placeholder="Поиск по бренду" aria-label="Search" name="brand">
+                <input class="form-control me-2" type="search" placeholder="Поиск по бренду" aria-label="Search"
+                       name="brand">
                 <button class="btn btn-outline-light" type="submit">Поиск</button>
             </form>
             <a class="btn btn-primary" type="button" href="{% url 'registration' %}">Вход</a>
+            <a class="btn btn-danger" type="button" href="{% url 'logout' %}">Выход</a>
         </div>
     </div>
 </nav>
