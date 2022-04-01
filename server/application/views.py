@@ -51,6 +51,7 @@ def logout_page(request):
 
 
 def main_page(request):
+    a = 1 / 0
     return render(request, "base_index.html")
 
 
