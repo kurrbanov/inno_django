@@ -55,25 +55,25 @@ def main_page(request):
 
 
 def laptops(request):
-    laptops = Laptop.objects.all()
-    list_photos = [laptop.laptopphoto_set.all()[0].url for laptop in laptops]
+    laptops_ = Laptop.objects.all()
+    list_photos = [laptop.laptopphoto_set.all()[0].url for laptop in laptops_]
 
     data = []
 
-    for i in range(len(laptops)):
-        data.append([laptops[i], list_photos[i]])
+    for i in range(len(laptops_)):
+        data.append([laptops_[i], list_photos[i]])
 
     return render(request, "laptops_list.html", {"laptops": data})
 
 
 def search(request):
     if request.method == "POST":
-        laptops = Laptop.objects.filter(brand=request.POST["brand"])
+        laptops_ = Laptop.objects.filter(brand=request.POST["brand"])
 
-        if len(laptops) == 0:
+        if len(laptops_) == 0:
             return render(request, "search_results.html", {"found": False})
 
-        context = {"found": True, "laptops": laptops}
+        context = {"found": True, "laptops": laptops_}
         return render(request, "search_results.html", context)
 
     return render(request, "search_results.html")
