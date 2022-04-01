@@ -18,3 +18,15 @@ def list_laptops(request):
 
     return render(request, "laptops_list.html", {"laptops": data})
 
+
+def search_by_brand(request):
+    if request.method == "POST":
+        laptops = Laptop.objects.filter(brand=request.POST["brand"])
+
+        if len(laptops) == 0:
+            return render(request, "search_results.html", {"found": False})
+
+        context = {"found": True, "laptops": laptops}
+        return render(request, "search_results.html", context)
+
+    return render(request, "search_results.html")

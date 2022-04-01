@@ -1,0 +1,15 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+{% block content %}
+    {% if not found %}
+        <h1 class="text-center">Ничего не найдено</h1>
+    {% else %}
+        <ul>
+        {% for laptop in laptops %}
+            <li>{{ laptop.name }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock content %}
