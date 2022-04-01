@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from application.models import Laptop
+from application.form import RegistrationUser
 
 
 def main_page(request):
@@ -30,3 +31,18 @@ def search_by_brand(request):
         return render(request, "search_results.html", context)
 
     return render(request, "search_results.html")
+
+
+def registration(request):
+    form = RegistrationUser()
+
+    if request.method == "POST":
+        form = RegistrationUser(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            print("ERRORR!!!!")
+            print(form.errors.as_data())
+            return render(request, "registration.html", {"error": True})
+
+    return render(request, "registration.html", {"form": form, "error": False})

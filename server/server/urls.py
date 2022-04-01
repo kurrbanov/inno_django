@@ -19,11 +19,12 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from application.views import main_page, list_laptops, search_by_brand
+from application.views import main_page, list_laptops, search_by_brand, registration
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_page, name=''),
     path('laptops/', list_laptops, name='laptops'),
-    path('search/', search_by_brand, name='search')
+    path('search/', search_by_brand, name='search'),
+    path('registration/', registration, name='registration')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

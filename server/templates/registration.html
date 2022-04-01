@@ -1,0 +1,28 @@
+{% extends 'base_index.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="signin text-center">
+        <form method="POST" class="signin">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Логин">
+                <label for="username">Логин</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Почта">
+                <label for="email">Почта</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="Пароль">
+                <label for="password1">Пароль</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Пароль">
+                <label for="password2">Повторите пароль</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" type="submit">Зарегистрироваться</button>
+        </form>
+    </main>
+{% endblock content %}
