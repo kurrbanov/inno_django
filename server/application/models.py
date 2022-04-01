@@ -33,9 +33,9 @@ class Laptop(models.Model):
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    laptop = models.ManyToManyField(Laptop, null=True)
+    laptop = models.ManyToManyField(Laptop, blank=True)
 
 
 class LaptopPhoto(models.Model):
     url = models.URLField()
-    laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, null=True)
+    laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, blank=False)
