@@ -2,10 +2,38 @@
 {% load static %}
 
 {% block content %}
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        main {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        form {
+            max-width: 400px;
+        }
+
+        form {
+            padding-top: 10px;
+        }
+
+
+    </style>
     <main class="signin text-center">
         <form method="POST" class="signin">
             {% csrf_token %}
             <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="form-floating">
                 <input type="text" class="form-control" id="username" name="username" placeholder="Логин">
                 <label for="username">Логин</label>
@@ -23,6 +51,7 @@
                 <label for="password2">Повторите пароль</label>
             </div>
             <button class="w-100 btn btn-lg btn-success" type="submit">Зарегистрироваться</button>
+            <a class="w-100 btn btn-lg btn-primary" type="button" href="#">Войти</a>
         </form>
     </main>
 {% endblock content %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.contrib import messages
 
-from application.models import Laptop
+from application.models import Laptop, Cart
 from application.form import RegistrationUser
 
 
@@ -39,10 +40,12 @@ def registration(request):
     if request.method == "POST":
         form = RegistrationUser(request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save(commit=False)
+            new_cart = Cart(user=new_user)
+            new_user.save()
+            new_cart.save()
         else:
-            print("ERRORR!!!!")
-            print(form.errors.as_data())
-            return render(request, "registration.html", {"error": True})
+            messages.error(request, "Форма регистрации заполнена неверно!")
+            return render(request, "registration.html")
 
-    return render(request, "registration.html", {"form": form, "error": False})
+    return render(request, "registration.html", {"form": form})
