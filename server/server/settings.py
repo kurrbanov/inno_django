@@ -51,11 +51,6 @@ MIDDLEWARE = [
     'application.middlewares.FirstMiddleware'
 ]
 
-"""
-1. request -> middlewares -> views -> middleware -> response
-
-"""
-
 
 ROOT_URLCONF = 'server.urls'
 

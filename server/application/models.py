@@ -39,3 +39,7 @@ class Cart(models.Model):
 class LaptopPhoto(models.Model):
     url = models.URLField()
     laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, blank=False)
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=25)

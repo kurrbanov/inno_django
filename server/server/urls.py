@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from application.views import main_page, laptops, search, registration, login_page, logout_page
+from application.views import main_page, laptops, search, registration, login_page, logout_page, top_secret
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('registration/', registration, name='registration'),
     path('login/', login_page, name='login'),
-    path('logout/', logout_page, name='logout')
+    path('logout/', logout_page, name='logout'),
+    path('top_secret', top_secret, name='top_secret')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

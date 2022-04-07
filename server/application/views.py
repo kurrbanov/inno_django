@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, HttpResponseForbidden
 
 from application.models import Laptop, Cart
 from application.form import RegistrationUser
@@ -77,3 +78,10 @@ def search(request):
         return render(request, "search_results.html", context)
 
     return render(request, "search_results.html")
+
+
+def top_secret(request):
+    if request.user.is_authenticated:
+        return HttpResponse("Hello World!")
+    else:
+        return HttpResponseForbidden("Доступ запрещён!")
